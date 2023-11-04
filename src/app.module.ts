@@ -2,31 +2,35 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CrawlerTjalService } from './crawlers/crawler_tjal/crawler_tjal.service';
-import { CrawlerTjal1Controller } from './crawlers/crawler_tjal/crawler_tjal.controller';
-import { CrawlerTjal1Module } from './crawlers/crawler_tjal/crawler_tjal.module';
-import { CrawlerTjce1Module } from './crawlers/crawler_tjce/crawler_tjce_1.module';
-import { CrawlerTjce1Controller } from './crawlers/crawler_tjce/crawler_tjce_1.controller';
-import { CrawlerTjce1Service } from './crawlers/crawler_tjce/crawler_tjce_1.service';
 import { ApiController } from './api/controllers/api.controller';
 import { ApiService } from './api/services/api.service';
 import { ApiModule } from './api/modules/api.module';
-import { FirstInstance } from './crawlers/crawler_tjal/utils/firstInstance';
-import { SecondInstance } from './crawlers/crawler_tjal/utils/secondInstance';
+import { FirstInstanceAL } from './crawlers/crawler_tjal/utils/firstInstance';
+import { SecondInstanceAL } from './crawlers/crawler_tjal/utils/secondInstance';
+import { CrawlerTjalModule } from './crawlers/crawler_tjal/crawler_tjal.module';
+import { CrawlerTjalController } from './crawlers/crawler_tjal/crawler_tjal.controller';
+import { CrawlerTjceController } from './crawlers/crawler_tjce/crawler_tjce.controller';
+import { CrawlerTjceService } from './crawlers/crawler_tjce/crawler_tjce.service';
+import { CrawlerTjceModule } from './crawlers/crawler_tjce/crawler_tjce.module';
+import { FirstInstanceCE } from './crawlers/crawler_tjce/utils/fistInstance';
+import { SecondInstanceCE } from './crawlers/crawler_tjce/utils/secondInstance';
 
 @Module({
-  imports: [CrawlerTjal1Module, CrawlerTjce1Module, ApiModule],
+  imports: [CrawlerTjalModule, CrawlerTjceModule, ApiModule],
   controllers: [
     AppController,
-    CrawlerTjal1Controller,
-    CrawlerTjce1Controller,
+    CrawlerTjalController,
+    CrawlerTjceController,
     ApiController,
   ],
   providers: [
     AppService,
     CrawlerTjalService,
-    CrawlerTjce1Service,
-    FirstInstance,
-    SecondInstance,
+    CrawlerTjceService,
+    FirstInstanceAL,
+    SecondInstanceAL,
+    FirstInstanceCE,
+    SecondInstanceCE,
     ApiService,
   ],
 })

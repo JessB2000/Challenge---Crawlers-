@@ -1,15 +1,16 @@
 import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
-import { CrawlerTjalService } from './crawler_tjal.service';
+import { CrawlerTjceService } from './crawler_tjce.service';
 
-@Controller('crawler-tjal-1')
-export class CrawlerTjalController {
-  constructor(private readonly crawlerTjalService: CrawlerTjalService) {}
+@Controller('crawler-tjce-1')
+export class CrawlerTjceController {
+  constructor(private readonly crawlerTjceService: CrawlerTjceService) {}
+
   @Get(':process')
   async getProcessDetails(
     @Param('process') processNumber: string,
   ): Promise<any> {
     const processData =
-      await this.crawlerTjalService.getDataInstances(processNumber);
+      await this.crawlerTjceService.getDataInstances(processNumber);
     if (!processData) {
       throw new NotFoundException(
         `Processo com número ${processNumber} não encontrado`,

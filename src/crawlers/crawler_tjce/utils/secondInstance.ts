@@ -1,35 +1,48 @@
 import * as puppeteer from 'puppeteer';
 import cheerio from 'cheerio';
 
-export class FirstInstanceAL {
-  private browserPrimeiraInstancia: puppeteer.Browser;
+export class SecondInstanceCE {
+  private browserSegundaInstancia: puppeteer.Browser;
 
   constructor() {}
 
   async initializeBrowser() {
-    this.browserPrimeiraInstancia = await puppeteer.launch({ headless: 'new' });
+    this.browserSegundaInstancia = await puppeteer.launch({ headless: 'new' });
   }
 
   async closeBrowser() {
-    if (this.browserPrimeiraInstancia) {
-      await this.browserPrimeiraInstancia.close();
+    if (this.browserSegundaInstancia) {
+      await this.browserSegundaInstancia.close();
     }
   }
 
-  async getDataTJALPrimeiraInstancia(url: string, processNumber: string) {
-    const pagina = await this.browserPrimeiraInstancia.newPage();
+  async getDataTJCESegundaInstancia(url: string, processNumber: string) {
+    const pagina = await this.browserSegundaInstancia.newPage();
     try {
       const parteNumero = processNumber.slice(0, 15);
       const parteDoisNumero = processNumber.slice(21, 25);
       await pagina.goto(url, { waitUntil: 'networkidle2' });
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
-      console.log(parteNumero);
-      console.log(parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      await pagina.waitForSelector('#tabelaUltimasMovimentacoes', {
+      console.log('cheguei de novo');
+      await pagina.waitForSelector('#modalIncidentes', { timeout: 40000 });
+      console.log('cheguei de novo aaaaa');
+      await pagina.evaluate(() => {
+        const radio = document.querySelector(
+          '#processoSelecionado',
+        ) as HTMLInputElement;
+        if (radio && radio.type === 'radio') {
+          radio.checked = true;
+          radio.dispatchEvent(new Event('change'));
+        }
+      });
+      console.log('poxa vida');
+      await pagina.keyboard.press('Enter');
+      await pagina.waitForSelector('#tablePartesPrincipais', {
         timeout: 60000,
       });
+      console.log('cheguei aq tb a');
       const content = await pagina.content();
       const $ = cheerio.load(content);
 

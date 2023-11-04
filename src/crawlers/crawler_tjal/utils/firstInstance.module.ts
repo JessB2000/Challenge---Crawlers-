@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { FirstInstance } from './firstInstance';
+import { FirstInstanceAL } from './firstInstance';
 
 @Module({
-  providers: [FirstInstance],
-  exports: [FirstInstance],
+  providers: [FirstInstanceAL],
+  exports: [FirstInstanceAL],
 })
-export class FirstInstanceModule {}
+export class FirstInstanceALModule {}

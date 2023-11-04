@@ -1,29 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { FirstInstanceAL } from './utils/firstInstance';
-import { SecondInstanceAL } from './utils/secondInstance';
+import { FirstInstanceCE } from './utils/fistInstance';
+import { SecondInstanceCE } from './utils/secondInstance';
 
 @Injectable()
-export class CrawlerTjalService {
+export class CrawlerTjceService {
   constructor(
-    private dadosPrimeiraInstancia: FirstInstanceAL,
-    private dadosSegundaInstancia: SecondInstanceAL,
+    private dadosPrimeiraInstancia: FirstInstanceCE,
+    private dadosSegundaInstancia: SecondInstanceCE,
   ) {}
 
   async getDataInstances(processNumber: string) {
-    const urlPrimeiraInstancia = 'https://www2.tjal.jus.br/cpopg/open.do';
-    const urlSegundaInstancia = 'https://www2.tjal.jus.br/cposg5/open.do';
+    const urlPrimeiraInstancia = 'https://esaj.tjce.jus.br/cpopg/open.do';
+    const urlSegundaInstancia = 'https://esaj.tjce.jus.br/cposg5/open.do';
 
     await this.dadosPrimeiraInstancia.initializeBrowser();
     await this.dadosSegundaInstancia.initializeBrowser();
 
     try {
       const primeiraInstancia =
-        await this.dadosPrimeiraInstancia.getDataTJALPrimeiraInstancia(
+        await this.dadosPrimeiraInstancia.getDataTJCEPrimeiraInstancia(
           urlPrimeiraInstancia,
           processNumber,
         );
       const segundaInstancia =
-        await this.dadosSegundaInstancia.getDataTJALSegundaInstancia(
+        await this.dadosSegundaInstancia.getDataTJCESegundaInstancia(
           urlSegundaInstancia,
           processNumber,
         );

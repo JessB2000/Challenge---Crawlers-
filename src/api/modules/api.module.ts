@@ -1,24 +1,40 @@
 import { Module } from '@nestjs/common';
-import { CrawlerTjce1Controller } from 'src/crawlers/crawler_tjce/crawler_tjce_1.controller';
 import { CrawlerTjalService } from 'src/crawlers/crawler_tjal/crawler_tjal.service';
-import { CrawlerTjce1Service } from 'src/crawlers/crawler_tjce/crawler_tjce_1.service';
-import { CrawlerTjce1Module } from 'src/crawlers/crawler_tjce/crawler_tjce_1.module';
 import { ApiController } from '../controllers/api.controller';
 import { ApiService } from '../services/api.service';
-import { FirstInstance } from 'src/crawlers/crawler_tjal/utils/firstInstance';
-import { FirstInstanceModule } from 'src/crawlers/crawler_tjal/utils/firstInstance.module';
-import { SecondInstance } from 'src/crawlers/crawler_tjal/utils/secondInstance';
-import { SecondInstanceModule } from 'src/crawlers/crawler_tjal/utils/secondInstance.module';
+import { FirstInstanceAL } from 'src/crawlers/crawler_tjal/utils/firstInstance';
+import { FirstInstanceALModule } from 'src/crawlers/crawler_tjal/utils/firstInstance.module';
+import { SecondInstanceAL } from 'src/crawlers/crawler_tjal/utils/secondInstance';
+import { SecondInstanceALModule } from 'src/crawlers/crawler_tjal/utils/secondInstance.module';
+import { CrawlerTjalController } from 'src/crawlers/crawler_tjal/crawler_tjal.controller';
+import { CrawlerTjalModule } from 'src/crawlers/crawler_tjal/crawler_tjal.module';
+import { CrawlerTjceModule } from 'src/crawlers/crawler_tjce/crawler_tjce.module';
+import { CrawlerTjceController } from 'src/crawlers/crawler_tjce/crawler_tjce.controller';
+import { CrawlerTjceService } from 'src/crawlers/crawler_tjce/crawler_tjce.service';
+import { FirstInstanceCEModule } from 'src/crawlers/crawler_tjce/utils/firstInstance.module';
+import { FirstInstanceCE } from 'src/crawlers/crawler_tjce/utils/fistInstance';
+import { SecondInstanceCE } from 'src/crawlers/crawler_tjce/utils/secondInstance';
+import { SecondInstanceCEModule } from 'src/crawlers/crawler_tjce/utils/secondInstance.module';
 
 @Module({
-  imports: [CrawlerTjce1Module, FirstInstanceModule, SecondInstanceModule],
-  controllers: [ApiController, CrawlerTjce1Controller],
+  imports: [
+    CrawlerTjalModule,
+    CrawlerTjceModule,
+    FirstInstanceALModule,
+    SecondInstanceALModule,
+    FirstInstanceCEModule,
+    FirstInstanceCEModule,
+    SecondInstanceCEModule,
+  ],
+  controllers: [ApiController, CrawlerTjalController, CrawlerTjceController],
   providers: [
     ApiService,
     CrawlerTjalService,
-    CrawlerTjce1Service,
-    FirstInstance,
-    SecondInstance,
+    CrawlerTjceService,
+    FirstInstanceAL,
+    SecondInstanceAL,
+    FirstInstanceCE,
+    SecondInstanceCE,
   ],
 })
 export class ApiModule {}

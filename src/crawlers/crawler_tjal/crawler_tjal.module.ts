@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { CrawlerTjal1Controller } from './crawler_tjal.controller';
+import { CrawlerTjalController } from './crawler_tjal.controller';
 import { CrawlerTjalService } from './crawler_tjal.service';
-import { FirstInstance } from './utils/firstInstance';
-import { SecondInstance } from './utils/secondInstance';
-import { FirstInstanceModule } from './utils/firstInstance.module';
-import { SecondInstanceModule } from './utils/secondInstance.module';
+import { FirstInstanceAL } from './utils/firstInstance';
+import { SecondInstanceAL } from './utils/secondInstance';
+import { FirstInstanceALModule } from './utils/firstInstance.module';
+import { SecondInstanceALModule } from './utils/secondInstance.module';
 
 @Module({
-  imports: [FirstInstanceModule, SecondInstanceModule],
-  controllers: [CrawlerTjal1Controller],
-  providers: [CrawlerTjalService, FirstInstance, SecondInstance],
+  imports: [FirstInstanceALModule, SecondInstanceALModule],
+  controllers: [CrawlerTjalController],
+  providers: [CrawlerTjalService, FirstInstanceAL, SecondInstanceAL],
 })
-export class CrawlerTjal1Module {}
+export class CrawlerTjalModule {}

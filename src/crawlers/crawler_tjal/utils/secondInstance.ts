@@ -1,7 +1,7 @@
 import * as puppeteer from 'puppeteer';
 import cheerio from 'cheerio';
 
-export class SecondInstance {
+export class SecondInstanceAL {
   private browserSegundaInstancia: puppeteer.Browser;
 
   constructor() {}
@@ -25,9 +25,7 @@ export class SecondInstance {
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      console.log('cheguei de novo');
-      await pagina.waitForSelector('#modalIncidentes', { timeout: 2000 });
-      console.log('cheguei de novo aaaaa');
+      await pagina.waitForSelector('#modalIncidentes', { timeout: 40000 });
       await pagina.evaluate(() => {
         const radio = document.querySelector(
           '#processoSelecionado',
@@ -37,12 +35,10 @@ export class SecondInstance {
           radio.dispatchEvent(new Event('change'));
         }
       });
-      console.log('poxa vida');
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tablePartesPrincipais', {
-        timeout: 20000,
+        timeout: 60000,
       });
-      console.log('cheguei aq tb a');
       const content = await pagina.content();
       const $ = cheerio.load(content);
 

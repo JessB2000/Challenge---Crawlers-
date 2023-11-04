@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { SecondInstance } from './secondInstance';
+import { SecondInstanceAL } from './secondInstance';
 
 @Module({
-  providers: [SecondInstance],
-  exports: [SecondInstance],
+  providers: [SecondInstanceAL],
+  exports: [SecondInstanceAL],
 })
-export class SecondInstanceModule {}
+export class SecondInstanceALModule {}

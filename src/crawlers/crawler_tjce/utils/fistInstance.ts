@@ -1,16 +1,35 @@
-import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+import * as puppeteer from 'puppeteer';
 import cheerio from 'cheerio';
 
-@Injectable()
-export class CrawlerTjce1Service {
-  async getProcessOne(processNumber: string) {
-    try {
-      const response = await axios.get(
-        `https://esaj.tjce.jus.br/cpopg/show.do?processo.numero=${processNumber}`,
-      );
-      const $ = cheerio.load(response.data);
+export class FirstInstanceCE {
+  private browserPrimeiraInstancia: puppeteer.Browser;
 
+  constructor() {}
+
+  async initializeBrowser() {
+    this.browserPrimeiraInstancia = await puppeteer.launch({ headless: 'new' });
+  }
+
+  async closeBrowser() {
+    if (this.browserPrimeiraInstancia) {
+      await this.browserPrimeiraInstancia.close();
+    }
+  }
+
+  async getDataTJCEPrimeiraInstancia(url: string, processNumber: string) {
+    const pagina = await this.browserPrimeiraInstancia.newPage();
+    try {
+      const parteNumero = processNumber.slice(0, 15);
+      const parteDoisNumero = processNumber.slice(21, 25);
+      await pagina.goto(url, { waitUntil: 'networkidle2' });
+      await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
+      await pagina.type('#foroNumeroUnificado', parteDoisNumero);
+      await pagina.keyboard.press('Enter');
+      await pagina.waitForSelector('#tabelaUltimasMovimentacoes', {
+        timeout: 60000,
+      });
+      const content = await pagina.content();
+      const $ = cheerio.load(content);
       const numero = $('#numeroProcesso')
         .text()
         .replace(/\n|\t|\r/g, '')
@@ -32,10 +51,8 @@ export class CrawlerTjce1Service {
         .text()
         .replace(/\n|\t|\r/g, '')
         .replace(/\s{2,}/g, ' ');
-      const partesProcesso: {
-        pessoa: string;
-        envolvidos: string;
-      }[] = [];
+
+      const partesProcesso: { pessoa: string; envolvidos: string }[] = [];
       const movimentacoesLista: { data: string; movimento: string }[] = [];
 
       $('#tableTodasPartes tr').each((index, element) => {
@@ -78,6 +95,8 @@ export class CrawlerTjce1Service {
     } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
+    } finally {
+      await pagina.close();
     }
   }
 }

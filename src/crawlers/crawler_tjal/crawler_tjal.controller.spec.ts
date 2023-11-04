@@ -1,19 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CrawlerTjal1Controller } from './crawler_tjal.controller';
-import { CrawlerTjal1Module } from './crawler_tjal.module';
+import { CrawlerTjalController } from './crawler_tjal.controller';
+import { CrawlerTjalModule } from './crawler_tjal.module';
 import { CrawlerTjalService } from './crawler_tjal.service';
 
-describe('CrawlerTjal1Controller', () => {
-  let controller: CrawlerTjal1Controller;
+describe('CrawlerTjalController', () => {
+  let controller: CrawlerTjalController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CrawlerTjal1Module],
-      controllers: [CrawlerTjal1Controller],
+      imports: [CrawlerTjalModule],
+      controllers: [CrawlerTjalController],
       providers: [CrawlerTjalService],
     }).compile();
 
-    controller = module.get<CrawlerTjal1Controller>(CrawlerTjal1Controller);
+    controller = module.get<CrawlerTjalController>(CrawlerTjalController);
   });
 
   it('should be defined', () => {
