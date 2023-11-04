@@ -10,6 +10,8 @@ import { CrawlerTjce1Service } from './crawlers/crawler_tjce/crawler_tjce_1.serv
 import { ApiController } from './api/controllers/api.controller';
 import { ApiService } from './api/services/api.service';
 import { ApiModule } from './api/modules/api.module';
+import { FirstInstance } from './crawlers/crawler_tjal/utils/firstInstance';
+import { SecondInstance } from './crawlers/crawler_tjal/utils/secondInstance';
 
 @Module({
   imports: [CrawlerTjal1Module, CrawlerTjce1Module, ApiModule],
@@ -19,6 +21,13 @@ import { ApiModule } from './api/modules/api.module';
     CrawlerTjce1Controller,
     ApiController,
   ],
-  providers: [AppService, CrawlerTjalService, CrawlerTjce1Service, ApiService],
+  providers: [
+    AppService,
+    CrawlerTjalService,
+    CrawlerTjce1Service,
+    FirstInstance,
+    SecondInstance,
+    ApiService,
+  ],
 })
 export class AppModule {}

@@ -1,17 +1,20 @@
-import * as puppeteer from 'puppeteer';
 import { Injectable } from '@nestjs/common';
 import { FirstInstance } from './utils/firstInstance';
+import { SecondInstance } from './utils/secondInstance';
 
 @Injectable()
 export class CrawlerTjalService {
-  private dadosPrimeiraInstancia: FirstInstance;
-  private dadosSegundaInstancia: puppeteer.Browser;
+  constructor(
+    private dadosPrimeiraInstancia: FirstInstance,
+    private dadosSegundaInstancia: SecondInstance,
+  ) {}
 
   async getDataInstances(processNumber: string) {
     const urlPrimeiraInstancia = 'https://www2.tjal.jus.br/cpopg/open.do';
     const urlSegundaInstancia = 'https://www2.tjal.jus.br/cposg5/open.do';
 
     await this.dadosPrimeiraInstancia.initializeBrowser();
+    await this.dadosSegundaInstancia.initializeBrowser();
 
     try {
       const primeiraInstancia =
@@ -20,7 +23,7 @@ export class CrawlerTjalService {
           processNumber,
         );
       const segundaInstancia =
-        await this.dadosPrimeiraInstancia.getDataTJALPrimeiraInstancia(
+        await this.dadosSegundaInstancia.getDataTJALSegundaInstancia(
           urlSegundaInstancia,
           processNumber,
         );

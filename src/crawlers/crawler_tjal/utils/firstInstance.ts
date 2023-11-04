@@ -3,21 +3,16 @@ import cheerio from 'cheerio';
 
 export class FirstInstance {
   private browserPrimeiraInstancia: puppeteer.Browser;
-  private browserSegundaInstancia: puppeteer.Browser;
 
   constructor() {}
 
   async initializeBrowser() {
     this.browserPrimeiraInstancia = await puppeteer.launch({ headless: 'new' });
-    this.browserSegundaInstancia = await puppeteer.launch({ headless: 'new' });
   }
 
   async closeBrowser() {
     if (this.browserPrimeiraInstancia) {
       await this.browserPrimeiraInstancia.close();
-    }
-    if (this.browserSegundaInstancia) {
-      await this.browserSegundaInstancia.close();
     }
   }
 
