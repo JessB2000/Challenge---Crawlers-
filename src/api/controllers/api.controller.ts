@@ -3,18 +3,16 @@ import { ApiService } from '../services/api.service';
 
 @Controller('api/processos')
 export class ApiController {
-    constructor(private readonly apiService: ApiService) {}
+  constructor(private readonly apiService: ApiService) {}
 
-  @Get(':numeroProcesso/:tribunal/:grau')
-  async getInfoProcesso(
-    @Param('numeroProcesso') numeroProcesso: string,
-    @Param('tribunal') tribunal: string,
-    @Param('grau') grau: number, 
-  ) {
+  @Get(':numeroProcesso')
+  async getInfoProcesso(@Param('numeroProcesso') numeroProcesso: string) {
     try {
-      const process = await this.apiService.getProcessos(numeroProcesso, tribunal, grau);
+      const process = await this.apiService.getProcessos(numeroProcesso);
       if (!process) {
-        throw new NotFoundException(`Processo com número ${numeroProcesso} não encontrado`);
+        throw new NotFoundException(
+          `Processo com número ${numeroProcesso} não encontrado`,
+        );
       }
       return process;
     } catch (error) {

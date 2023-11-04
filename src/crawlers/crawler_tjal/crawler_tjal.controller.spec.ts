@@ -1,8 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CrawlerTjal1Controller } from './crawler_tjal_1.controller';
-import { CrawlerTjal1Module } from './crawler_tjal_1.module';
-import { CrawlerTjal1Service } from './crawler_tjal_1.service';
-
+import { CrawlerTjal1Controller } from './crawler_tjal.controller';
+import { CrawlerTjal1Module } from './crawler_tjal.module';
+import { CrawlerTjalService } from './crawler_tjal.service';
 
 describe('CrawlerTjal1Controller', () => {
   let controller: CrawlerTjal1Controller;
@@ -11,7 +10,7 @@ describe('CrawlerTjal1Controller', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CrawlerTjal1Module],
       controllers: [CrawlerTjal1Controller],
-      providers: [CrawlerTjal1Service]
+      providers: [CrawlerTjalService],
     }).compile();
 
     controller = module.get<CrawlerTjal1Controller>(CrawlerTjal1Controller);
