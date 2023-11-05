@@ -24,8 +24,6 @@ export class FirstInstanceAL {
       await pagina.goto(url, { waitUntil: 'networkidle2' });
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
-      console.log(parteNumero);
-      console.log(parteDoisNumero);
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaUltimasMovimentacoes', {
         timeout: 60000,

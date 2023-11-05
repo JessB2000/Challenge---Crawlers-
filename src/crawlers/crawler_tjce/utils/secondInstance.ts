@@ -25,9 +25,7 @@ export class SecondInstanceCE {
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      console.log('cheguei de novo');
       await pagina.waitForSelector('#modalIncidentes', { timeout: 40000 });
-      console.log('cheguei de novo aaaaa');
       await pagina.evaluate(() => {
         const radio = document.querySelector(
           '#processoSelecionado',
