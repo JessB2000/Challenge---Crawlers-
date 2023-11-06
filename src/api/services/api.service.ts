@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CrawlerTjalService } from 'src/crawlers/crawler_tjal/crawler_tjal.service';
 import { CrawlerTjceService } from 'src/crawlers/crawler_tjce/crawler_tjce.service';
 
@@ -16,9 +16,12 @@ export class ApiService {
         return this.crawlerTjalService.getDataInstances(numeroProcesso);
       } else if (valor == '8.06') {
         return this.crawlerTjceService.getDataInstances(numeroProcesso);
+      }else {
+        throw new NotFoundException('Crawler não disponível para o número do processo');
       }
     } catch (error) {
       console.error('Erro ao obter os detalhes do processo.', error);
+      throw new NotFoundException('Erro ao obter os detalhes do processo', error);
       return null;
     }
   }
