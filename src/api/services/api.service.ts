@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CrawlerTjalService } from 'src/crawlers/crawler_tjal/crawler_tjal.service';
-import { CrawlerTjceService } from 'src/crawlers/crawler_tjce/crawler_tjce.service';
+import { CrawlerTjalService } from '../../crawlers/crawler_tjal/crawler_tjal.service';
+import { CrawlerTjceService } from '../../crawlers/crawler_tjce/crawler_tjce.service';
 
 @Injectable()
 export class ApiService {
@@ -21,7 +21,6 @@ export class ApiService {
       }
     } catch (error) {
       console.error('Erro ao obter os detalhes do processo.', error);
-      throw new NotFoundException('Erro ao obter os detalhes do processo', error);
       return null;
     }
   }

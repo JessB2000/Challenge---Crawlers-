@@ -10,12 +10,6 @@ export class SecondInstanceCE {
     this.browserSegundaInstancia = await puppeteer.launch({ headless: 'new' });
   }
 
-  async closeBrowser() {
-    if (this.browserSegundaInstancia) {
-      await this.browserSegundaInstancia.close();
-    }
-  }
-
   async getDataTJCESegundaInstancia(url: string, processNumber: string) {
     const pagina = await this.browserSegundaInstancia.newPage();
     try {
