@@ -29,7 +29,6 @@ export class SecondInstanceCE {
           radio.dispatchEvent(new Event('change'));
         }
       });
-      console.log('poxa vida');
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tablePartesPrincipais', {
         timeout: 60000,
