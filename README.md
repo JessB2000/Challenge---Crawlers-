@@ -1,3 +1,41 @@
+Olá, esse é o meu projeto! 
+
+Ele foi desenvolvido em TypeScript com o Framework Nest.Js
+https://nestjs.com/
+
+Motivo da escolha: O NestJs possui uma documentação extensa e muito detalhada, além disso, é uma ótima escolha para códigos que precisarão ser escalados em um futuro próximo. 
+
+Bom, para startar existem dois caminhos: 
+
+O primeiro caminho e mais simples é com o Docker e Docker-Compose instalados na máquina
+  - Clone o projeto neste repositório;
+  - Na pasta raiz do projeto, abra o terminal e digite "docker-compose up -d"
+   - Para acessar o servidor, vá até um navegador ou softwares como swagger, insomnia ou postman e digite 'localhost:3000'
+
+O segundo caminho é com o nodejs na versão 20.9.0 ou versões similares
+ - Clone o projeto neste repositório; 
+ - Abra o terminal na pasta raiz do projeto e digite 'npm install' ou 'npm i'; 
+ - Para rodar, digite no terminas, 'npm start'; 
+ - Para rodar os testes automatizados, digite no terminal, 'npm run tests'; 
+ - Para acessar o servidor, vá até um navegador ou softwares como swagger, insomnia ou postman
+e digite 'localhost:3000'
+
+Para testar a api manualmente há alguns passos a seguir: 
+
+  - Abra o navegador ou algum software disponível para testes de API e digite:
+  localhost:3000/api/processos/{numeroProcesso}
+  - Ele deve retornar o processo no seguinte formato: 
+    - 
+Para testar cada crawler manualmente, os passos são o seguinte: 
+
+  - TJAL: Abra o navegador ou algum software disponível para testes de API e digite:
+  localhost:3000/crawler-tjal/{numeroProcesso}
+    - Ele deve retornar o processo no seguinte formato: 
+      - 
+  - TJCE: Abra o navegador ou algum software disponível para testes de API e digite:
+  localhost:3000/crawler-tjce/{numeroProcesso}
+    - Ele deve retornar o processo no seguinte formato: 
+      - 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
