@@ -19,18 +19,10 @@ export class SecondInstanceCE {
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      await pagina.waitForSelector('#modalIncidentes', { timeout: 40000 });
-      await pagina.evaluate(() => {
-        const radio = document.querySelector(
-          '#processoSelecionado',
-        ) as HTMLInputElement;
-        if (radio && radio.type === 'radio') {
-          radio.checked = true;
-          radio.dispatchEvent(new Event('change'));
-        }
-      });
+      await pagina.waitForSelector('#modalIncidentes', { timeout: 4000 });
+      await pagina.click('#processoSelecionado');
       await pagina.keyboard.press('Enter');
-      await pagina.waitForSelector('#tablePartesPrincipais', {
+      await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
         timeout: 60000,
       });
       console.log('cheguei aq tb a');

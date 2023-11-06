@@ -1,7 +1,7 @@
 import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { CrawlerTjceService } from './crawler_tjce.service';
 
-@Controller('crawler-tjce-1')
+@Controller('crawler-tjce')
 export class CrawlerTjceController {
   constructor(private readonly crawlerTjceService: CrawlerTjceService) {}
 

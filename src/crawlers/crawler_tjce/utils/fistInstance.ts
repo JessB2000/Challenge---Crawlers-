@@ -25,8 +25,8 @@ export class FirstInstanceCE {
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      await pagina.waitForSelector('#tabelaUltimasMovimentacoes', {
-        timeout: 60000,
+      await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
+        timeout: 6000,
       });
       const content = await pagina.content();
       const $ = cheerio.load(content);
@@ -69,7 +69,7 @@ export class FirstInstanceCE {
         partesProcesso.push({ pessoa, envolvidos });
       });
 
-      $('#tabelaUltimasMovimentacoes tr').each((index, element) => {
+      $('#tabelaTodasMovimentacoes tr').each((index, element) => {
         const data = $(element)
           .find('td:nth-child(1)')
           .text()

@@ -25,32 +25,32 @@ export class FirstInstanceAL {
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      await pagina.waitForSelector('#tabelaUltimasMovimentacoes', {
-        timeout: 60000,
+      await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
+        timeout: 6000,
       });
       const content = await pagina.content();
       const $ = cheerio.load(content);
 
       const numero = $('#numeroProcesso')
         .text()
-        .replace(/\n|\t|\r/g, '')
+        .replace(/\n|\t|\r/g, ' ')
         .replace(/\s{2,}/g, ' ');
       const classe = $('#classeProcesso')
         .text()
-        .replace(/\n|\t|\r/g, '')
+        .replace(/\n|\t|\r/g, ' ')
         .replace(/\s{2,}/g, ' ');
       const area = $('#areaProcesso')
         .text()
-        .replace(/\n|\t|\r/g, '')
+        .replace(/\n|\t|\r/g, ' ')
         .replace(/\s{2,}/g, ' ');
       const dataDistribuicao = $('#dataHoraDistribuicaoProcesso')
         .text()
         .slice(0, 9)
-        .replace(/\n|\t|\r/g, '')
+        .replace(/\n|\t|\r/g, ' ')
         .replace(/\s{2,}/g, ' ');
       const valorAcao = $('#valorAcaoProcesso')
         .text()
-        .replace(/\n|\t|\r/g, '')
+        .replace(/\n|\t|\r/g, ' ')
         .replace(/\s{2,}/g, ' ');
 
       const partesProcesso: { pessoa: string; envolvidos: string }[] = [];
@@ -60,26 +60,26 @@ export class FirstInstanceAL {
         const pessoa = $(element)
           .find('td:nth-child(1)')
           .text()
-          .replace(/\n|\t|\r/g, '')
+          .replace(/\n|\t|\r/g, ' ')
           .replace(/\s{2,}/g, ' ');
         const envolvidos = $(element)
           .find('td:nth-child(2)')
           .text()
-          .replace(/\n|\t|\r/g, '')
+          .replace(/\n|\t|\r/g, ' ')
           .replace(/\s{2,}/g, ' ');
         partesProcesso.push({ pessoa, envolvidos });
       });
 
-      $('#tabelaUltimasMovimentacoes tr').each((index, element) => {
+      $('#tabelaTodasMovimentacoes tr').each((index, element) => {
         const data = $(element)
           .find('td:nth-child(1)')
           .text()
-          .replace(/\n|\t|\r/g, '')
+          .replace(/\n|\t|\r/g, ' ')
           .replace(/\s{2,}/g, ' ');
         const movimento = $(element)
           .find('td:nth-child(3)')
           .text()
-          .replace(/\n|\t|\r/g, '')
+          .replace(/\n|\t|\r/g, ' ')
           .replace(/\s{2,}/g, ' ');
         movimentacoesLista.push({ data, movimento });
       });
