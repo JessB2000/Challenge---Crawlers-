@@ -7,7 +7,7 @@ export class ApiService {
   constructor(
     private readonly crawlerTjalService: CrawlerTjalService,
     private readonly crawlerTjceService: CrawlerTjceService,
-  ) {}
+  ) { }
 
   async getProcessos(numeroProcesso: string) {
     try {
@@ -16,7 +16,7 @@ export class ApiService {
         return this.crawlerTjalService.getDataInstances(numeroProcesso);
       } else if (valor == '8.06') {
         return this.crawlerTjceService.getDataInstances(numeroProcesso);
-      }else {
+      } else {
         throw new NotFoundException('Crawler não disponível para o número do processo');
       }
     } catch (error) {

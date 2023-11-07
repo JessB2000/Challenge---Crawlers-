@@ -4,13 +4,11 @@ import cheerio from 'cheerio';
 export class SecondInstanceAL {
   private browserSegundaInstancia: puppeteer.Browser;
 
-  constructor() {}
+  constructor() { }
 
   async initializeBrowser() {
     this.browserSegundaInstancia = await puppeteer.launch({ headless: 'new' });
   }
-
-
   async getDataTJALSegundaInstancia(url: string, processNumber: string) {
     const pagina = await this.browserSegundaInstancia.newPage();
     try {
@@ -21,15 +19,6 @@ export class SecondInstanceAL {
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#modalIncidentes', { timeout: 4000 });
-     /* await pagina.evaluate(() => {
-        const radio = document.querySelector(
-          '#processoSelecionado',
-        ) as HTMLInputElement;
-        if (radio && radio.type === 'radio') {
-          radio.checked = true;
-          radio.dispatchEvent(new Event('change'));
-        }
-      });*/
       await pagina.click('#processoSelecionado')
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
@@ -103,8 +92,6 @@ export class SecondInstanceAL {
     } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
-    } finally {
-      await pagina.close();
     }
   }
 }

@@ -793,7 +793,7 @@ describe('CrawlerTjceController', () => {
       expect(result).toEqual(expectedResult);
     }, 600000);
 
-    it('test to see if NotFoundExeption returns if the process is not found', async () => {
+    it('should throw NotFoundException if process not found', async () => {
       const processNumber = '0710802-55.2018.8.02.0001';
       try {
         await controller.getProcessDetails(processNumber);

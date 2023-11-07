@@ -26,4 +26,17 @@ describe('ApiService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+  it('should call getDataInstances from CrawlerTjalService when valor is "8.02"', async () => {
+    // Arrange
+    const numeroProcesso = 'xxxxxx8.02xxxxxx';
+    const expectedResult = 'some data';
+    crawlerTjalService.getDataInstances.mockResolvedValue(expectedResult);
+
+    // Act
+    const result = await apiService.getProcessos(numeroProcesso);
+
+    // Assert
+    expect(result).toBe(expectedResult);
+    expect(crawlerTjalService.getDataInstances).toHaveBeenCalledWith(numeroProcesso);
+  });
 });
