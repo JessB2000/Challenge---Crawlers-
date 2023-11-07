@@ -19,6 +19,7 @@ describe('CrawlerTjalController', () => {
       providers: [CrawlerTjalService, FirstInstanceAL, SecondInstanceAL],
     }).compile();
 
+    service = module.get<CrawlerTjalService>(CrawlerTjalService); 
     controller = module.get<CrawlerTjalController>(CrawlerTjalController);
   });
 
@@ -714,22 +715,22 @@ describe('CrawlerTjalController', () => {
             }
         ]
     }};
-      jest.spyOn(service, 'getDataInstances').mockResolvedValue(expectedResult);
+     // jest.spyOn(service, 'getDataInstances').mockResolvedValue(expectedResult);
 
       const result = await controller.getProcessDetails(processNumber);
       expect(result).toEqual(expectedResult);
-    });
+    }, 600000);
 
     it('should throw NotFoundException if process not found', async () => {
       const processNumber = '0070337-91.2008.8.06.0001';
-      jest.spyOn(service, 'getDataInstances').mockResolvedValue(null);
+     // jest.spyOn(service, 'getDataInstances').mockResolvedValue(null);
       try {
         await controller.getProcessDetails(processNumber);
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);
         expect(error.message).toEqual(`Processo com número ${processNumber} não encontrado`);
       }
-    });
+    }, 600000);
   });
 });
 
