@@ -36,19 +36,40 @@ describe('ApiService', () => {
     }).compile();
 
     service = module.get<ApiService>(ApiService);
+    crawlerTjalService = module.get<CrawlerTjalService>(CrawlerTjalService);
+    crawlerTjceService = module.get<CrawlerTjceService>(CrawlerTjceService);
   });
-
+ 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+  describe ('getProcessos', () => {
   it('should call getDataInstances from CrawlerTjalService when valor is "8.02"', async () => {
-    const numeroProcesso = 'xxxxxx8.02xxxxxx';
-    const expectedResult = 'some data';
-    crawlerTjalService.getDataInstances(expectedResult);
+    const numeroProcesso = 'XXXXXXXXXXXXXXX8.02XXXX';
+    const mockData = {
+       "primeiraInstancia":{ 
+        "numero": expect.any(String),
+        "classe": expect.any(String),
+        "area": expect.any(String),
+        "dataDistribuicao": expect.any(String),
+        "valorAcao": expect.any(String),
+        "partesProcesso": expect.any(Array),
+        "movimentacoesLista": expect.any(Array),
+    }, 
+    "segundaInstancia":{ 
+      "numero": expect.any(String),
+      "classe": expect.any(String),
+      "area": expect.any(String),
+      "dataDistribuicao": expect.any(String),
+      "valorAcao": expect.any(String),
+      "partesProcesso": expect.any(Array),
+      "movimentacoesLista": expect.any(Array),
+  }
+    }
+    jest.spyOn(crawlerTjalService, 'getDataInstances').mockResolvedValue(mockData);
     const result = await service.getProcessos(numeroProcesso);
-    expect(result).toBe(expectedResult);
-    expect(crawlerTjalService.getDataInstances).toHaveBeenCalledWith(
-      numeroProcesso,
-    );
+    expect(result).toBeNull(); 
+    expect(result).toEqual(mockData);
   });
+});
 });
