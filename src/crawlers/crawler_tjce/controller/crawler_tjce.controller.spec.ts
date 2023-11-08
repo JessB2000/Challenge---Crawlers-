@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CrawlerTjceController } from './crawler_tjce.controller';
-import { CrawlerTjceService } from './crawler_tjce.service';
-import { CrawlerTjceModule } from './crawler_tjce.module';
-import { FirstInstanceCEModule } from './utils/firstInstance.module';
-import { SecondInstanceCEModule } from './utils/secondInstance.module';
-import { FirstInstanceCE } from './utils/fistInstance';
-import { SecondInstanceCE } from './utils/secondInstance';
+import { CrawlerTjceService } from '../service/crawler_tjce.service';
+import { CrawlerTjceModule } from '../module/crawler_tjce.module';
+import { FirstInstanceCEModule } from '../utils/firstInstance.module';
+import { SecondInstanceCEModule } from '../utils/secondInstance.module';
+import { FirstInstanceCE } from '../utils/fistInstance';
+import { SecondInstanceCE } from '../utils/secondInstance';
 import { NotFoundException } from '@nestjs/common';
 
 describe('CrawlerTjceController', () => {

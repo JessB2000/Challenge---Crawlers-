@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CrawlerTjceService } from './crawler_tjce.service';
-import { FirstInstanceCEModule } from './utils/firstInstance.module';
-import { SecondInstanceCEModule } from './utils/secondInstance.module';
-import { FirstInstanceCE } from './utils/fistInstance';
-import { SecondInstanceCE } from './utils/secondInstance';
+import { FirstInstanceCEModule } from '../utils/firstInstance.module';
+import { SecondInstanceCEModule } from '../utils/secondInstance.module';
+import { FirstInstanceCE } from '../utils/fistInstance';
+import { SecondInstanceCE } from '../utils/secondInstance';
 
 describe('CrawlerTjceService', () => {
   let service: CrawlerTjceService;

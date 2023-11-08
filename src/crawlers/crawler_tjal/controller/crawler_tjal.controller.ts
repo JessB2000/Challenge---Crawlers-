@@ -1,5 +1,5 @@
 import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
-import { CrawlerTjalService } from './crawler_tjal.service';
+import { CrawlerTjalService } from '../service/crawler_tjal.service';
 
 @Controller('crawler-tjal')
 export class CrawlerTjalController {

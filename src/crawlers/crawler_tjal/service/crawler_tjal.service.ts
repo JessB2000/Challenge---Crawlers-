@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { FirstInstanceAL } from './utils/firstInstance';
-import { SecondInstanceAL } from './utils/secondInstance';
+import { FirstInstanceAL } from '../utils/firstInstance';
+import { SecondInstanceAL } from '../utils/secondInstance';
 
 @Injectable()
 export class CrawlerTjalService {

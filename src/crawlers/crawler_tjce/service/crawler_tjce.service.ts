@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { FirstInstanceCE } from './utils/fistInstance';
-import { SecondInstanceCE } from './utils/secondInstance';
+import { FirstInstanceCE } from '../utils/fistInstance';
+import { SecondInstanceCE } from '../utils/secondInstance';
 
 @Injectable()
 export class CrawlerTjceService {

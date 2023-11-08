@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ApiService } from './api.service';
-import { CrawlerTjceService } from '../../crawlers/crawler_tjce/crawler_tjce.service';
-import { CrawlerTjalService } from '../../crawlers/crawler_tjal/crawler_tjal.service';
+import { CrawlerTjceService } from '../../crawlers/crawler_tjce/service/crawler_tjce.service';
+import { CrawlerTjalService } from '../../crawlers/crawler_tjal/service/crawler_tjal.service';
 import { FirstInstanceAL } from '../../crawlers/crawler_tjal/utils/firstInstance';
 import { FirstInstanceALModule } from '../../crawlers/crawler_tjal/utils/firstInstance.module';
 import { SecondInstanceALModule } from '../../crawlers/crawler_tjal/utils/secondInstance.module';

@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CrawlerTjalController } from './crawler_tjal.controller';
-import { CrawlerTjalModule } from './crawler_tjal.module';
-import { CrawlerTjalService } from './crawler_tjal.service';
-import { FirstInstanceALModule } from './utils/firstInstance.module';
-import { SecondInstanceALModule } from './utils/secondInstance.module';
-import { FirstInstanceAL } from './utils/firstInstance';
-import { SecondInstanceAL } from './utils/secondInstance';
+import { CrawlerTjalModule } from '../module/crawler_tjal.module';
+import { CrawlerTjalService } from '../service/crawler_tjal.service';
+import { FirstInstanceALModule } from '../utils/firstInstance.module';
+import { SecondInstanceALModule } from '../utils/secondInstance.module';
+import { FirstInstanceAL } from '../utils/firstInstance';
+import { SecondInstanceAL } from '../utils/secondInstance';
 
 describe('CrawlerTjalController', () => {
   let controller: CrawlerTjalController;

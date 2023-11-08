@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CrawlerTjalService } from './crawler_tjal.service';
-import { FirstInstanceALModule } from './utils/firstInstance.module';
-import { SecondInstanceALModule } from './utils/secondInstance.module';
-import { FirstInstanceAL } from './utils/firstInstance';
-import { SecondInstanceAL } from './utils/secondInstance';
+import { FirstInstanceALModule } from '../utils/firstInstance.module';
+import { SecondInstanceALModule } from '../utils/secondInstance.module';
+import { FirstInstanceAL } from '../utils/firstInstance';
+import { SecondInstanceAL } from '../utils/secondInstance';
 
 describe('CrawlerTjal1Service', () => {
   let service: CrawlerTjalService;
