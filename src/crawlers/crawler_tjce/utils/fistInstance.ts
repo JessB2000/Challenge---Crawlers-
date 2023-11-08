@@ -26,7 +26,7 @@ export class FirstInstanceCE {
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
-        timeout: 6000,
+        timeout: 60000,
       });
       const content = await pagina.content();
       const $ = cheerio.load(content);
@@ -95,6 +95,8 @@ export class FirstInstanceCE {
     } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
+    } finally {
+      await pagina.close();
     }
   }
 }

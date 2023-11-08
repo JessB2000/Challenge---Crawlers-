@@ -18,7 +18,7 @@ export class SecondInstanceAL {
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
-      await pagina.waitForSelector('#modalIncidentes', { timeout: 4000 });
+      await pagina.waitForSelector('#modalIncidentes', { timeout: 40000 });
       await pagina.click('#processoSelecionado');
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
@@ -92,6 +92,8 @@ export class SecondInstanceAL {
     } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
+    }finally {
+        await pagina.close(); 
     }
   }
 }

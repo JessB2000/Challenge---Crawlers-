@@ -19,15 +19,21 @@ export class FirstInstanceAL {
   async getDataTJALPrimeiraInstancia(url: string, processNumber: string) {
     const pagina = await this.browserPrimeiraInstancia.newPage();
     try {
+      console.log('pagina criada'); 
       const parteNumero = processNumber.slice(0, 15);
       const parteDoisNumero = processNumber.slice(21, 25);
       await pagina.goto(url, { waitUntil: 'networkidle2' });
+      console.log('pagina ida'); 
       await pagina.type('#numeroDigitoAnoUnificado', parteNumero);
+      console.log('pagina digita'); 
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
+      console.log('pagina digita'); 
       await pagina.keyboard.press('Enter');
+      console.log('pfoi'); 
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
-        timeout: 6000,
+        timeout: 60000,
       });
+      console.log('chegou'); 
       const content = await pagina.content();
       const $ = cheerio.load(content);
 
@@ -94,8 +100,10 @@ export class FirstInstanceAL {
         movimentacoesLista,
       };
     } catch (error) {
-      console.error('Erro ao obter detalhes do processo', error);
+      console.error('Erro ao obter detalhes do processo: ', error);
       return null;
+    } finally{
+        await pagina.close();
     }
   }
 }
