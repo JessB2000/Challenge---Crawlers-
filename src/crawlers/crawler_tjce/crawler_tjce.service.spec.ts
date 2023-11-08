@@ -10,7 +10,7 @@ describe('CrawlerTjceService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports:[FirstInstanceCEModule,SecondInstanceCEModule],
+      imports: [FirstInstanceCEModule, SecondInstanceCEModule],
       providers: [CrawlerTjceService, FirstInstanceCE, SecondInstanceCE],
     }).compile();
 

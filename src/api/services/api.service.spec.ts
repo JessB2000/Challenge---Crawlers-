@@ -13,11 +13,26 @@ import { SecondInstanceAL } from '../../crawlers/crawler_tjal/utils/secondInstan
 
 describe('ApiService', () => {
   let service: ApiService;
+  let crawlerTjalService: CrawlerTjalService;
+  let crawlerTjceService: CrawlerTjceService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [FirstInstanceALModule, SecondInstanceALModule, FirstInstanceCEModule, SecondInstanceCEModule],
-      providers: [ApiService, CrawlerTjalService,CrawlerTjceService, FirstInstanceCE, SecondInstanceCE, FirstInstanceAL, SecondInstanceAL],
+      imports: [
+        FirstInstanceALModule,
+        SecondInstanceALModule,
+        FirstInstanceCEModule,
+        SecondInstanceCEModule,
+      ],
+      providers: [
+        ApiService,
+        CrawlerTjalService,
+        CrawlerTjceService,
+        FirstInstanceCE,
+        SecondInstanceCE,
+        FirstInstanceAL,
+        SecondInstanceAL,
+      ],
     }).compile();
 
     service = module.get<ApiService>(ApiService);
@@ -27,16 +42,13 @@ describe('ApiService', () => {
     expect(service).toBeDefined();
   });
   it('should call getDataInstances from CrawlerTjalService when valor is "8.02"', async () => {
-    // Arrange
     const numeroProcesso = 'xxxxxx8.02xxxxxx';
     const expectedResult = 'some data';
-    crawlerTjalService.getDataInstances.mockResolvedValue(expectedResult);
-
-    // Act
-    const result = await apiService.getProcessos(numeroProcesso);
-
-    // Assert
+    crawlerTjalService.getDataInstances(expectedResult);
+    const result = await service.getProcessos(numeroProcesso);
     expect(result).toBe(expectedResult);
-    expect(crawlerTjalService.getDataInstances).toHaveBeenCalledWith(numeroProcesso);
+    expect(crawlerTjalService.getDataInstances).toHaveBeenCalledWith(
+      numeroProcesso,
+    );
   });
 });

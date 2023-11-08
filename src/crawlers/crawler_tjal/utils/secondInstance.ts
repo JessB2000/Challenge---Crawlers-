@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 export class SecondInstanceAL {
   private browserSegundaInstancia: puppeteer.Browser;
 
-  constructor() { }
+  constructor() {}
 
   async initializeBrowser() {
     this.browserSegundaInstancia = await puppeteer.launch({ headless: 'new' });
@@ -19,7 +19,7 @@ export class SecondInstanceAL {
       await pagina.type('#foroNumeroUnificado', parteDoisNumero);
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#modalIncidentes', { timeout: 4000 });
-      await pagina.click('#processoSelecionado')
+      await pagina.click('#processoSelecionado');
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
         timeout: 60000,

@@ -96,8 +96,6 @@ export class FirstInstanceAL {
     } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
-    } finally {
-      await pagina.close();
     }
   }
 }

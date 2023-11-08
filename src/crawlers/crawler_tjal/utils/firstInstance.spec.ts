@@ -1,23 +1,32 @@
 import * as puppeteer from 'puppeteer';
 import { FirstInstanceAL } from './firstInstance';
 
+interface MockedBrowser extends puppeteer.Browser {
+  newPage: jest.Mock<Promise<puppeteer.Page>, []>;
+}
+
 describe('FirstInstanceAL', () => {
   let firstInstanceAL: FirstInstanceAL;
-  let mockBrowser: puppeteer.Browser;
+  let mockBrowser: MockedBrowser;
 
-  beforeEach(async () => {
-    mockBrowser = {} as puppeteer.Browser;
+  beforeEach(() => {
+    mockBrowser = {
+      newPage: jest.fn().mockResolvedValue({} as puppeteer.Page),
+    } as MockedBrowser;
     firstInstanceAL = new FirstInstanceAL();
     firstInstanceAL['browserPrimeiraInstancia'] = mockBrowser;
   });
 
   it('should initialize browser', async () => {
-    const puppeteerLaunchSpy = jest.spyOn(puppeteer, 'launch').mockResolvedValue(mockBrowser);
+    const puppeteerLaunchSpy = jest
+      .spyOn(puppeteer, 'launch')
+      .mockResolvedValue(mockBrowser);
     await firstInstanceAL.initializeBrowser();
     expect(puppeteerLaunchSpy).toHaveBeenCalledWith({ headless: 'new' });
   });
-  it ('should return mocked data in the first instance ', async()=>{
-    const htmlMock= {
+
+  it('should return mocked data in the first instance ', async () => {
+    const htmlMock = {
       '#numeroProcesso': '0710802-55.2018.8.02.0001',
       '#classeProcesso': 'Procedimento Comum Cível',
       '#areaProcesso': 'Cível',
@@ -28,25 +37,25 @@ describe('FirstInstanceAL', () => {
       '.data': ['06/10/2022', '08/10/2022'],
       '.descricao': ['1 movimento', '2 movimento'],
     };
-    const pageMock = jest.fn((selector) => {
-      return htmlMock[selector];
-    });
-    const pageMockI = jest.fn((selector) => {
-      return htmlMock[selector] || [];
-    });
-    const finallyMock: any = {
-      $eval: pageMock,
-      $$eval: pageMockI,
-    };
+
+    const mockPage = (mockBrowser.newPage = jest.fn(async () => {
+      const pageMock: puppeteer.Page = {
+        $eval: jest.fn((selector) => htmlMock[selector]),
+      } as unknown as puppeteer.Page;
+      return pageMock;
+    }));
+
     (puppeteer.launch as jest.Mock).mockResolvedValue({
-      newPage: jest.fn().mockResolvedValue(pageMock),
-      close: jest.fn(),
+      newPage: jest.fn().mockResolvedValue(mockPage),
     });
 
     const url = 'https://www.processos.com';
     const processNumber = '0710802-55.2018.8.02.0001';
 
-    const result = await firstInstanceAL.getDataTJALPrimeiraInstancia(url, processNumber);
+    const result = await firstInstanceAL.getDataTJALPrimeiraInstancia(
+      url,
+      processNumber,
+    );
 
     expect(result.numero).toBe('0710802-55.2018.8.02.0001');
     expect(result.classe).toBe('Procedimento Comum Cível');
@@ -61,7 +70,7 @@ describe('FirstInstanceAL', () => {
     expect(result.movimentacoesLista.length).toBe(2);
     expect(result.movimentacoesLista[0].data).toBe('06/10/2022');
     expect(result.movimentacoesLista[0].movimento).toBe('1 movimento');
-    expect(result.movimentacoesLista[1].data).toBe('08/01/2022');
+    expect(result.movimentacoesLista[1].data).toBe('08/10/2022');
     expect(result.movimentacoesLista[1].movimento).toBe('2 movimento');
-  })
+  });
 });

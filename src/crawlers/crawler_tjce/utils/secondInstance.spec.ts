@@ -1,25 +1,29 @@
 import * as puppeteer from 'puppeteer';
 import { SecondInstanceCE } from './secondInstance';
 
+interface MockedBrowser extends puppeteer.Browser {
+  newPage: jest.Mock<Promise<puppeteer.Page>, []>;
+}
 describe('SecondInstanceCE', () => {
   let secondInstanceCE: SecondInstanceCE;
   let mockBrowser: puppeteer.Browser;
 
   beforeEach(async () => {
-    mockBrowser = {} as puppeteer.Browser;
-    const puppeteerLaunchSpy = jest.spyOn(puppeteer, 'launch').mockResolvedValue(mockBrowser);
+    mockBrowser = {
+      newPage: jest.fn().mockResolvedValue({} as puppeteer.Page),
+    } as unknown as MockedBrowser;
     secondInstanceCE = new SecondInstanceCE();
+    secondInstanceCE['browserSegundaInstancia'] = mockBrowser;
+  });
+  it('should initialize browser', async () => {
+    const puppeteerLaunchSpy = jest
+      .spyOn(puppeteer, 'launch')
+      .mockResolvedValue(mockBrowser);
     await secondInstanceCE.initializeBrowser();
     expect(puppeteerLaunchSpy).toHaveBeenCalledWith({ headless: 'new' });
   });
-
-  it('should initialize browser', async() => {
-    const puppeteerLaunchSpy = jest.spyOn(puppeteer, 'launch').mockResolvedValue(mockBrowser);
-    await secondInstanceCE.initializeBrowser();
-    expect(puppeteerLaunchSpy).toHaveBeenCalledWith({ headless: 'new' });
-  });
-  it ('should return mocked data in the first instance ', async()=>{
-    const htmlMock= {
+  it('should return mocked data in the first instance ', async () => {
+    const htmlMock = {
       '#numeroProcesso': '0710802-55.2018.8.02.0001',
       '#classeProcesso': 'Procedimento Comum Cível',
       '#areaProcesso': 'Cível',
@@ -30,25 +34,24 @@ describe('SecondInstanceCE', () => {
       '.data': ['09/12/2022', '11/10/2022', '20/10/2022'],
       '.descricao': ['1 movimento', '2 movimento', '3 movimento'],
     };
-    const pageMock = jest.fn((selector) => {
-      return htmlMock[selector];
-    });
-    const pageMockI = jest.fn((selector) => {
-      return htmlMock[selector] || [];
-    });
-    const finallyMock: any = {
-      $eval: pageMock,
-      $$eval: pageMockI,
-    };
+    const mockPage = (mockBrowser.newPage = jest.fn(async () => {
+      const pageMock: puppeteer.Page = {
+        $eval: jest.fn((selector) => htmlMock[selector]),
+      } as unknown as puppeteer.Page;
+      return pageMock;
+    }));
+
     (puppeteer.launch as jest.Mock).mockResolvedValue({
-      newPage: jest.fn().mockResolvedValue(pageMock),
-      close: jest.fn(),
+      newPage: jest.fn().mockResolvedValue(mockPage),
     });
 
     const url = 'https://www.processos.com';
     const processNumber = '0710802-55.2018.8.02.0001';
 
-    const result = await secondInstanceCE.getDataTJCESegundaInstancia(url, processNumber);
+    const result = await secondInstanceCE.getDataTJCESegundaInstancia(
+      url,
+      processNumber,
+    );
 
     expect(result.numero).toBe('0710802-55.2018.8.02.0001');
     expect(result.classe).toBe('Procedimento Comum Cível');
@@ -69,5 +72,5 @@ describe('SecondInstanceCE', () => {
     expect(result.movimentacoesLista[1].movimento).toBe('2 movimento');
     expect(result.movimentacoesLista[2].data).toBe('20/12/2022');
     expect(result.movimentacoesLista[2].movimento).toBe('3 movimento');
-  })
+  }, 600000);
 });

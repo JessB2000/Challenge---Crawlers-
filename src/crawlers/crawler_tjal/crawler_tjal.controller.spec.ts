@@ -9,16 +9,18 @@ import { SecondInstanceAL } from './utils/secondInstance';
 
 describe('CrawlerTjalController', () => {
   let controller: CrawlerTjalController;
-  let service: CrawlerTjalService; 
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CrawlerTjalModule, FirstInstanceALModule, SecondInstanceALModule],
+      imports: [
+        CrawlerTjalModule,
+        FirstInstanceALModule,
+        SecondInstanceALModule,
+      ],
       controllers: [CrawlerTjalController],
       providers: [CrawlerTjalService, FirstInstanceAL, SecondInstanceAL],
     }).compile();
 
-    service = module.get<CrawlerTjalService>(CrawlerTjalService); 
     controller = module.get<CrawlerTjalController>(CrawlerTjalController);
   });
 
@@ -26,4 +28,3 @@ describe('CrawlerTjalController', () => {
     expect(controller).toBeDefined();
   });
 });
-
