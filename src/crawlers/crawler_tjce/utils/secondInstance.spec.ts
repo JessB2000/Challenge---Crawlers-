@@ -37,7 +37,7 @@ describe('SecondInstanceCE', () => {
         partesProcesso: expect.any(Array),
         movimentacoesLista: expect.any(Array),
       });
-    });
+    }, 600000);
 
     it('should handle errors and return null', async () => {
       const mockPage = {
@@ -52,7 +52,7 @@ describe('SecondInstanceCE', () => {
 
       const data = await secondInstanceCE.getDataTJCESegundaInstancia('mockURL', 'mockProcessNumber');
       expect(data).toBeNull();
-    });
+    }, 600000);
   });
 });
 

@@ -9,19 +9,30 @@ export class ApiService {
     private readonly crawlerTjceService: CrawlerTjceService,
   ) { }
 
-  async getProcessos(numeroProcesso: string) {
+  async getProcessos(numeroProcesso: string): Promise<any | null> {
     try {
       const valor = numeroProcesso.slice(16, 20);
-      if (valor == '8.02') {
-        return this.crawlerTjalService.getDataInstances(numeroProcesso);
-      } else if (valor == '8.06') {
-        return this.crawlerTjceService.getDataInstances(numeroProcesso);
+      let processo: any | null = null;
+
+      if (valor === '8.02') {
+        processo = this.crawlerTjalService.getDataInstances(numeroProcesso);
+      } else if (valor === '8.06') {
+        processo = this.crawlerTjceService.getDataInstances(numeroProcesso);
       } else {
-        throw new NotFoundException('Crawler não disponível para o número do processo');
+        throw new NotFoundException('Crawler não disponível para este número de processo');
       }
+
+      if (!processo) {
+        throw new NotFoundException('Processo não encontrado');
+      }
+
+      return processo;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       console.error('Erro ao obter os detalhes do processo.', error);
-      return null;
+      throw new Error('Erro ao obter os detalhes do processo.');
     }
   }
 }

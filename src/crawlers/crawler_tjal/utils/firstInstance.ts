@@ -31,7 +31,7 @@ export class FirstInstanceAL {
       await pagina.keyboard.press('Enter');
       console.log('pfoi'); 
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
-        timeout: 60000,
+        timeout: 600000,
       });
       console.log('chegou'); 
       const content = await pagina.content();

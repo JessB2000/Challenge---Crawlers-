@@ -22,7 +22,7 @@ export class SecondInstanceAL {
       await pagina.click('#processoSelecionado');
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
-        timeout: 60000,
+        timeout: 600000,
       });
       const content = await pagina.content();
       const $ = cheerio.load(content);

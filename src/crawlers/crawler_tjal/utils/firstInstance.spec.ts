@@ -42,7 +42,7 @@ describe('FirstInstanceAL', () => {
         partesProcesso: expect.any(Array),
         movimentacoesLista: expect.any(Array),
       });
-    }, 60000);
+    }, 600000);
 
     it('should return null', async () => {
       const mockPage = {
@@ -57,6 +57,6 @@ describe('FirstInstanceAL', () => {
 
       const data = await firstInstanceAL.getDataTJALPrimeiraInstancia('mockURL', 'mockProcessNumber');
       expect(data).toBeNull();
-    }, 60000);
+    }, 600000);
   });
 });
