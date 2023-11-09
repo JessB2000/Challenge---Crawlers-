@@ -5,9 +5,15 @@ https://nestjs.com/
 
 Motivo da escolha: O NestJs possui uma documentação extensa e muito detalhada, além disso, é uma ótima escolha para códigos que precisarão ser escalados em um futuro próximo. 
 
+<<<<<<< HEAD
 Bom, para startar é o seguinte:  
 
 Com o nodejs na versão 20.9.0 ou versões similares
+=======
+Bom, para startar:
+PS: Tem também a versão com o docker, mas não consegui finalizar a tempo devido a complexidade do pupetter
+O caminho é com o nodejs na versão 20.9.0 ou versões similares
+>>>>>>> 126d0bb (project +- concluded)
  - Clone o projeto neste repositório; 
  - Abra o terminal na pasta raiz do projeto e digite 'npm install' ou 'npm i'; 
  - Para rodar, digite no terminas, 'npm start'; 
