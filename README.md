@@ -82,7 +82,7 @@ Para testar cada crawler manualmente, os passos são o seguinte:
     }
   },
   {
-    "primeiraInstancia": {
+    "segundaInstancia": {
       "numero": "",
       "classe": "",
       "area": "",
