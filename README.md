@@ -5,20 +5,17 @@ https://nestjs.com/
 
 Motivo da escolha: O NestJs possui uma documentação extensa e muito detalhada, além disso, é uma ótima escolha para códigos que precisarão ser escalados em um futuro próximo. 
 
-Bom, para startar existem dois caminhos: 
+Bom, para startar é o seguinte:  
 
-O primeiro caminho e mais simples é com o Docker e Docker-Compose instalados na máquina
-  - Clone o projeto neste repositório;
-  - Na pasta raiz do projeto, abra o terminal e digite "docker compose up"
-  - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman e digite 'localhost:3000'
-
-O segundo caminho é com o nodejs na versão 20.9.0 ou versões similares
+Com o nodejs na versão 20.9.0 ou versões similares
  - Clone o projeto neste repositório; 
  - Abra o terminal na pasta raiz do projeto e digite 'npm install' ou 'npm i'; 
  - Para rodar, digite no terminas, 'npm start'; 
  - Para rodar os testes automatizados, digite no terminal, 'npm test'; 
  - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman
 e digite 'localhost:3000'
+
+PS: Também será possível startar com o docker, mas com a complexidade do puppeteer, não deu tempo de implementar 
 
 Para testar a api manualmente há alguns passos a seguir: 
 
