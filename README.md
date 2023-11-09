@@ -28,11 +28,13 @@ Para testar a api manualmente há alguns passos a seguir:
    {
     "numeroProcesso": "numero do processo"
       }
-    ```
+
+   ```
                                           OU
   - Abra o navegador ou algum software disponível para testes de API e faça uma requisição GET para:
   localhost:3000/api/processos/{numeroProcesso}
   - Ele deve retornar o processo no seguinte formato para ambas as requisições: 
+  
   ```bash
   {
     "primeiraInstancia": {
@@ -118,7 +120,7 @@ Para testar cada crawler manualmente, os passos são o seguinte:
    ```
 
 
-   
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
