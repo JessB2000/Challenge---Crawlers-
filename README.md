@@ -10,14 +10,14 @@ Bom, para startar existem dois caminhos:
 O primeiro caminho e mais simples é com o Docker e Docker-Compose instalados na máquina
   - Clone o projeto neste repositório;
   - Na pasta raiz do projeto, abra o terminal e digite "docker-compose up -d"
-   - Para acessar o servidor, vá até um navegador ou softwares como swagger, insomnia ou postman e digite 'localhost:3000'
+  - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman e digite 'localhost:3000'
 
 O segundo caminho é com o nodejs na versão 20.9.0 ou versões similares
  - Clone o projeto neste repositório; 
  - Abra o terminal na pasta raiz do projeto e digite 'npm install' ou 'npm i'; 
  - Para rodar, digite no terminas, 'npm start'; 
- - Para rodar os testes automatizados, digite no terminal, 'npm run tests'; 
- - Para acessar o servidor, vá até um navegador ou softwares como swagger, insomnia ou postman
+ - Para rodar os testes automatizados, digite no terminal, 'npm test'; 
+ - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman
 e digite 'localhost:3000'
 
 Para testar a api manualmente há alguns passos a seguir: 
@@ -32,22 +32,93 @@ Para testar a api manualmente há alguns passos a seguir:
                                           OU
   - Abra o navegador ou algum software disponível para testes de API e faça uma requisição GET para:
   localhost:3000/api/processos/{numeroProcesso}
-  - Ele deve retornar o processo no seguinte formato: 
+  - Ele deve retornar o processo no seguinte formato para ambas as requisições: 
   ```bash
-   {
-    "numeroProcesso": "numero do processo"
-      }
+  {
+    "primeiraInstancia": {
+      "numero": "",
+      "classe": "",
+      "area": "",
+      "dataDistribuicao": "",
+      "valorAcao": "",
+      "partesProcesso": [],
+      "movimentacoesLista": []
+    }
+  },
+  {
+    "segundaInstancia": {
+      "numero": "",
+      "classe": "",
+      "area": "",
+      "dataDistribuicao": "",
+      "valorAcao": "",
+      "partesProcesso": [],
+      "movimentacoesLista": []
+    }
+  }
+
    ```
 Para testar cada crawler manualmente, os passos são o seguinte: 
 
   - TJAL: Abra o navegador ou algum software disponível para testes de API e digite:
   localhost:3000/crawler-tjal/{numeroProcesso}
   - Ele deve retornar o processo no seguinte formato: 
-  - 
+   ```bash
+   
+  {
+    "segundaInstancia": {
+      "numero": "xxxxxxxxxxxxxxx8.02xxxx",
+      "classe": "",
+      "area": "",
+      "dataDistribuicao": "",
+      "valorAcao": "",
+      "partesProcesso": [],
+      "movimentacoesLista": []
+    }
+  },
+  {
+    "segundaInstancia": {
+      "numero": "",
+      "classe": "",
+      "area": "",
+      "dataDistribuicao": "",
+      "valorAcao": "",
+      "partesProcesso": [],
+      "movimentacoesLista": []
+    }
+  }
+   ```
   - TJCE: Abra o navegador ou algum software disponível para testes de API e digite:
   localhost:3000/crawler-tjce/{numeroProcesso}
   - Ele deve retornar o processo no seguinte formato: 
-    - 
+
+   ```bash
+  {
+    "segundaInstancia": {
+      "numero": "xxxxxxxxxxxxxxxxx8.06xxxx",
+      "classe": "",
+      "area": "",
+      "dataDistribuicao": "",
+      "valorAcao": "",
+      "partesProcesso": [],
+      "movimentacoesLista": []
+    }
+  },
+  {
+    "segundaInstancia": {
+      "numero": "",
+      "classe": "",
+      "area": "",
+      "dataDistribuicao": "",
+      "valorAcao": "",
+      "partesProcesso": [],
+      "movimentacoesLista": []
+    }
+  }
+   ```
+
+
+   
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
