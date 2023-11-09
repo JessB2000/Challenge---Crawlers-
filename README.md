@@ -30,11 +30,14 @@ Para testar a api manualmente há alguns passos a seguir:
       }
 
    ```
-                                          OU
+
+  OU
+
+  
   - Abra o navegador ou algum software disponível para testes de API e faça uma requisição GET para:
   localhost:3000/api/processos/{numeroProcesso}
   - Ele deve retornar o processo no seguinte formato para ambas as requisições: 
-  
+
   ```bash
   {
     "primeiraInstancia": {
