@@ -9,7 +9,7 @@ Bom, para startar existem dois caminhos:
 
 O primeiro caminho e mais simples é com o Docker e Docker-Compose instalados na máquina
   - Clone o projeto neste repositório;
-  - Na pasta raiz do projeto, abra o terminal e digite "docker-compose up -d"
+  - Na pasta raiz do projeto, abra o terminal e digite "docker-compose up"
   - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman e digite 'localhost:3000'
 
 O segundo caminho é com o nodejs na versão 20.9.0 ou versões similares
