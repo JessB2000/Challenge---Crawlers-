@@ -9,7 +9,7 @@ export class CrawlerTjalController {
     @Param('process') processNumber: string,
   ): Promise<any> {
     const processData =
-      await this.crawlerTjalService.getDataInstances(processNumber)
+      await this.crawlerTjalService.getDataInstances(processNumber);
     if (!processData) {
       throw new NotFoundException(
         `Processo com número ${processNumber} não encontrado`,

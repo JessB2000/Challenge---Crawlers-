@@ -25,8 +25,12 @@ describe('SecondInstanceCE', () => {
         newPage: jest.fn().mockResolvedValue(mockPage),
         close: jest.fn(),
       };
-
-      const data = await secondInstanceCE.getDataTJCESegundaInstancia('mockURL', 'mockProcessNumber');
+      const url = 'https://esaj.tjce.jus.br/cpopg5/open.do';
+      const processNumber = '0070337-91.2008.8.06.0001';
+      const data = await secondInstanceCE.getDataTJCESegundaInstancia(
+        url,
+        processNumber,
+      );
       expect(data).not.toBeNull();
       expect(data).toMatchObject({
         numero: expect.any(String),
@@ -37,7 +41,7 @@ describe('SecondInstanceCE', () => {
         partesProcesso: expect.any(Array),
         movimentacoesLista: expect.any(Array),
       });
-    }, 600000);
+    }, 60000);
 
     it('should handle errors and return null', async () => {
       const mockPage = {
@@ -49,10 +53,13 @@ describe('SecondInstanceCE', () => {
         newPage: jest.fn().mockResolvedValue(mockPage),
         close: jest.fn(),
       };
-
-      const data = await secondInstanceCE.getDataTJCESegundaInstancia('mockURL', 'mockProcessNumber');
+      const url = 'https://esaj.tjce.jus.br/cpopg5/open.do';
+      const processNumber = '0070337-91.2008.8.02.0001';
+      const data = await secondInstanceCE.getDataTJCESegundaInstancia(
+        url,
+        processNumber,
+      );
       expect(data).toBeNull();
-    }, 600000);
+    }, 60000);
   });
 });
-

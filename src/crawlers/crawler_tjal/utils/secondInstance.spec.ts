@@ -25,8 +25,12 @@ describe('SecondInstanceAL', () => {
         newPage: jest.fn().mockResolvedValue(mockPage),
         close: jest.fn(),
       };
-
-      const data = await secondInstanceAL.getDataTJALSegundaInstancia('mockURL', 'mockProcessNumber');
+      const url = 'https://www2.tjal.jus.br/cpopg5/open.do';
+      const processNumber = '0710802-55.2018.8.02.0001';
+      const data = await secondInstanceAL.getDataTJALSegundaInstancia(
+        url,
+        processNumber,
+      );
       expect(data).not.toBeNull();
       expect(data).toMatchObject({
         numero: expect.any(String),
@@ -37,7 +41,7 @@ describe('SecondInstanceAL', () => {
         partesProcesso: expect.any(Array),
         movimentacoesLista: expect.any(Array),
       });
-    }, 600000);
+    }, 60000);
 
     it('should handle errors and return null', async () => {
       const mockPage = {
@@ -49,9 +53,13 @@ describe('SecondInstanceAL', () => {
         newPage: jest.fn().mockResolvedValue(mockPage),
         close: jest.fn(),
       };
-
-      const data = await secondInstanceAL.getDataTJALSegundaInstancia('mockURL', 'mockProcessNumber');
+      const url = 'https://www2.tjal.jus.br/cpopg5/open.do';
+      const processNumber = '0710802-55.2018.8.06.0001';
+      const data = await secondInstanceAL.getDataTJALSegundaInstancia(
+        url,
+        processNumber,
+      );
       expect(data).toBeNull();
-    }, 600000);
+    }, 60000);
   });
 });

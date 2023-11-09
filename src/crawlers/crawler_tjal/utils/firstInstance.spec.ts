@@ -31,8 +31,12 @@ describe('FirstInstanceAL', () => {
         newPage: jest.fn().mockResolvedValue(mockPage),
         close: jest.fn(),
       };
-
-      const data = await firstInstanceAL.getDataTJALPrimeiraInstancia('mockURL', 'mockProcessNumber');
+      const url = 'https://www2.tjal.jus.br/cpopg/open.do';
+      const processNumber = '0710802-55.2018.8.02.0001';
+      const data = await firstInstanceAL.getDataTJALPrimeiraInstancia(
+        url,
+        processNumber,
+      );
       expect(data).toMatchObject({
         numero: expect.any(String),
         classe: expect.any(String),
@@ -42,7 +46,7 @@ describe('FirstInstanceAL', () => {
         partesProcesso: expect.any(Array),
         movimentacoesLista: expect.any(Array),
       });
-    }, 600000);
+    }, 60000);
 
     it('should return null', async () => {
       const mockPage = {
@@ -54,9 +58,13 @@ describe('FirstInstanceAL', () => {
         newPage: jest.fn().mockResolvedValue(mockPage),
         close: jest.fn(),
       };
-
-      const data = await firstInstanceAL.getDataTJALPrimeiraInstancia('mockURL', 'mockProcessNumber');
+      const url = 'https://www2.tjal.jus.br/cpopg/open.do';
+      const processNumber = '0710802-55.2018.8.06.0001';
+      const data = await firstInstanceAL.getDataTJALPrimeiraInstancia(
+        url,
+        processNumber,
+      );
       expect(data).toBeNull();
-    }, 600000);
+    }, 60000);
   });
 });

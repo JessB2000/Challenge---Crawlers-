@@ -23,24 +23,31 @@ e digite 'localhost:3000'
 Para testar a api manualmente há alguns passos a seguir: 
 
   - Abra o navegador ou algum software disponível para testes de API e faça uma requisição POST no formato json para localhost:3000/api/processos
-      {
+
+  ```bash
+   {
     "numeroProcesso": "numero do processo"
       }
+    ```
                                           OU
   - Abra o navegador ou algum software disponível para testes de API e faça uma requisição GET para:
   localhost:3000/api/processos/{numeroProcesso}
   - Ele deve retornar o processo no seguinte formato: 
-  - 
+  ```bash
+   {
+    "numeroProcesso": "numero do processo"
+      }
+   ```
 Para testar cada crawler manualmente, os passos são o seguinte: 
 
   - TJAL: Abra o navegador ou algum software disponível para testes de API e digite:
   localhost:3000/crawler-tjal/{numeroProcesso}
-    - Ele deve retornar o processo no seguinte formato: 
-      - 
+  - Ele deve retornar o processo no seguinte formato: 
+  - 
   - TJCE: Abra o navegador ou algum software disponível para testes de API e digite:
   localhost:3000/crawler-tjce/{numeroProcesso}
-    - Ele deve retornar o processo no seguinte formato: 
-      - 
+  - Ele deve retornar o processo no seguinte formato: 
+    - 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>

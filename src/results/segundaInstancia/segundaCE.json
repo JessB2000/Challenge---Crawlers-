@@ -1,0 +1,32 @@
+{
+    "segundaInstancia": {
+        "numero": " 0070337-91.2008.8.06.0001 ",
+        "classe": " Apelação Criminal",
+        "area": "Criminal",
+        "dataDistribuicao": "",
+        "valorAcao": "",
+        "partesProcesso": [],
+        "movimentacoesLista": [
+            {
+                "data": " 14/05/2020 ",
+                "movimento": " Remessa "
+            },
+            {
+                "data": " 14/05/2020 ",
+                "movimento": " Baixa Definitiva "
+            },
+            {
+                "data": " 13/05/2020 ",
+                "movimento": " Baixa Definitiva "
+            },
+            {
+                "data": " 13/05/2020 ",
+                "movimento": " Transitado em Julgado pelo STJ "
+            },
+            {
+                "data": " 13/05/2020 ",
+                "movimento": " Expedição de Certidão "
+            }
+        ]
+    }
+}

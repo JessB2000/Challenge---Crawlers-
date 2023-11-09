@@ -13,8 +13,8 @@ export class CrawlerTjalService {
     const urlPrimeiraInstancia = 'https://www2.tjal.jus.br/cpopg/open.do';
     const urlSegundaInstancia = 'https://www2.tjal.jus.br/cposg5/open.do';
 
-   await this.dadosPrimeiraInstancia.initializeBrowser();
-   await this.dadosSegundaInstancia.initializeBrowser();
+    await this.dadosPrimeiraInstancia.initializeBrowser();
+    await this.dadosSegundaInstancia.initializeBrowser();
 
     try {
       const primeiraInstancia =
@@ -28,7 +28,7 @@ export class CrawlerTjalService {
           processNumber,
         );
       return { primeiraInstancia, segundaInstancia };
-    }catch (error) {
+    } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
     } finally {

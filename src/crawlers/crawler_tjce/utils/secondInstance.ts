@@ -25,7 +25,6 @@ export class SecondInstanceCE {
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
         timeout: 60000,
       });
-      console.log('cheguei aq tb a');
       const content = await pagina.content();
       const $ = cheerio.load(content);
 

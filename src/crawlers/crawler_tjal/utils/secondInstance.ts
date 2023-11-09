@@ -22,7 +22,7 @@ export class SecondInstanceAL {
       await pagina.click('#processoSelecionado');
       await pagina.keyboard.press('Enter');
       await pagina.waitForSelector('#tabelaTodasMovimentacoes', {
-        timeout: 600000,
+        timeout: 60000,
       });
       const content = await pagina.content();
       const $ = cheerio.load(content);
@@ -92,8 +92,8 @@ export class SecondInstanceAL {
     } catch (error) {
       console.error('Erro ao obter detalhes do processo', error);
       return null;
-    }finally {
-        await pagina.close(); 
+    } finally {
+      await pagina.close();
     }
   }
 }
