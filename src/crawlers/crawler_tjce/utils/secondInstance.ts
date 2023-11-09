@@ -4,10 +4,12 @@ import cheerio from 'cheerio';
 export class SecondInstanceCE {
   private browserSegundaInstancia: puppeteer.Browser;
 
-  constructor() {}
+  constructor() { }
 
   async initializeBrowser() {
-    this.browserSegundaInstancia = await puppeteer.launch({ headless: 'new' });
+    this.browserSegundaInstancia = await puppeteer.launch({
+      headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
   }
 
   async getDataTJCESegundaInstancia(url: string, processNumber: string) {

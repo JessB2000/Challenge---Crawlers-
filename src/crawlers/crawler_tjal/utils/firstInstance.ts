@@ -4,10 +4,12 @@ import cheerio from 'cheerio';
 export class FirstInstanceAL {
   private browserPrimeiraInstancia: puppeteer.Browser;
 
-  constructor() {}
+  constructor() { }
 
   async initializeBrowser() {
-    this.browserPrimeiraInstancia = await puppeteer.launch({ headless: 'new' });
+    this.browserPrimeiraInstancia = await puppeteer.launch({
+      headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
   }
 
   async closeBrowser() {

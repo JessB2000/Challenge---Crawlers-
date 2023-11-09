@@ -4,7 +4,10 @@ Ele foi desenvolvido em TypeScript com o Framework Nest.Js
 https://nestjs.com/
 
 Motivo da escolha: O NestJs possui uma documentação extensa e muito detalhada, além disso, é uma ótima escolha para códigos que precisarão ser escalados em um futuro próximo.
-Bom, para startar: 
+
+OBS: Botei um timeout de 60000 para as requisições, as vezes é um tempo bom, as vezes não, depende bastante do sistema no momento. 
+
+Para startar o projeto há duas formas: 
 
 Com a versão do node >=19: 
 
@@ -15,7 +18,11 @@ Com a versão do node >=19:
  - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman
 e digite 'localhost:3000'
 
-PS: Também será possível startar com o docker, mas com a complexidade do puppeteer, não deu tempo de implementar 
+Com o docker e docker compose:
+  - Clone este repositório
+  - Com o docker e docker compose instalado na máquina, abra o terminal na pasta onde tá o arquivo dockerfile e digite 'docker compose up'
+  - Para acessar o servidor, vá até um navegador ou softwares como insomnia ou postman
+e digite 'localhost:3000'
 
 Para testar a api manualmente há alguns passos a seguir: 
 
